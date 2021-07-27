@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ITweet } from 'src/app/interfaces/tweet';
 
 @Component({
   selector: 'app-accordion',
@@ -7,10 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AccordionComponent implements OnInit {
 
-  @Input() tweetsGroup: any;
-  constructor() { }
+  @Input() public hashtagGroup: any;
+  public title: string = ''
+  public tweets: ITweet[] = [];
 
   ngOnInit(): void {
+    this.title = this.hashtagGroup.key;
+    this.tweets = this.hashtagGroup.value;
   }
 
 }

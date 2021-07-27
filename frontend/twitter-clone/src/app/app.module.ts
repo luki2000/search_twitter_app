@@ -24,7 +24,6 @@ import { AccordionComponent } from './element/layout/accordion/accordion.compone
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

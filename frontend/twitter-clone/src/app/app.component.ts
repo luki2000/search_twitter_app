@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { IHashtagGroup } from './interfaces/hashtagGroup';
 import { SpinnerService } from './services/spinner.service';
 import { TwitterService } from './services/twitter.service';
 
@@ -8,9 +9,9 @@ import { TwitterService } from './services/twitter.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'twitter-clone';
-  tweets: any;
+  hashtagGroups: IHashtagGroup[] | null = null;
   searchForm = this.formBuilder.group({
     query: ['', Validators.required]
   });
@@ -22,15 +23,17 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  // method to preserve order of keyValue in pipe
+  asIsOrder(a: any, b: any): number {
+    return 1;
   }
 
   onSubmit():void {
-      if(!this.searchForm.value.query) return
+    if(!this.searchForm.value.query) return
       this.spinnerService.requestStarted()
       this.twitterService.getTopTenHashtagTweets(this.searchForm.value.query)
-        .subscribe(tweets => {
-          this.tweets = tweets;
+        .subscribe(hashtagGroups => {
+          this.hashtagGroups = hashtagGroups;
           this.spinnerService.requestEnded();
         })
   }

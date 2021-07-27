@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IHashtagGroup } from '../interfaces/hashtagGroup';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +12,8 @@ export class TwitterService {
 
   constructor(private http: HttpClient) { }
 
-  public getTopTenHashtagTweets(query: string) {
-    return this.http.get(this.baseUrl + `?query=${query}`)
+  public getTopTenHashtagTweets(query: string): Observable<IHashtagGroup[]> {
+    return this.http.get<IHashtagGroup[]>(this.baseUrl + `?query=${query}`)
   }
 
 }

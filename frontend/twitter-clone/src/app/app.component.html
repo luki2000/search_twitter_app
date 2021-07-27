@@ -9,21 +9,26 @@
         formControlName="query"
         placeholder="search Tweets" 
         aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
 </nav>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-6 tweet-content-container">
-      <ng-container *ngIf="!tweets">
+    <div class="col-12 tweet-content-container">
+      <ng-container *ngIf="!hashtagGroups;">
         <h2 class="no-data-text">Please search above to get the best matching tweets by hashtag 👋😄☝</h2>
       </ng-container>
-      <ng-container *ngIf="tweets">
-        <p>tweets be here</p>
+      <ng-container *ngIf="hashtagGroups && ((hashtagGroups | json) === '{}')">
+        <h2 class="no-data-text">OOPS! No results returned, try search something else 🤕</h2>
+      </ng-container>
+      <ng-container *ngIf="hashtagGroups">
+        <ng-container *ngFor="let hashtagGroup of hashtagGroups | keyvalue: asIsOrder">
+          <app-accordion 
+            [hashtagGroup]="hashtagGroup"></app-accordion>
+        </ng-container>
       </ng-container>
     </div>
   </div>
 </div>
 <app-spinner></app-spinner>
-<router-outlet></router-outlet>
