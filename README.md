@@ -14,7 +14,7 @@ We search ten most popular hashtags out of 250 tweets but results may vary depen
   4.  Run the script main.py script with the command:
         `python main.py`
   5.  Server should be up and running
-  6.  Open a second terminal and navigate to frontend/twitter-clone directory where the package.json file resides
+  6.  Open a second terminal and navigate to frontend directory where the package.json file resides
   7.  To install dependencies run the command:
         `npm install`
   8.  Now run `npm start`
