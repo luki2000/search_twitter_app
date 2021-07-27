@@ -1,7 +1,7 @@
 <ngb-accordion #acc="ngbAccordion" id="tweetAccordion" activeIds="ngb-panel-0">
     <ngb-panel title={{title}}>
       <ng-template ngbPanelContent>
-        <div *ngFor="let tweet of hashtagGroup?.value;" class="card tweet-card">
+        <div *ngFor="let tweet of tweets;" class="card tweet-card">
             <div class="card-body">
               <img src={{tweet.user?.profile_image_url}} class="rounded-circle" />
               <h6 class="card-subtitle mb-2 text-muted inline-text">{{tweet?.user?.name}}</h6>

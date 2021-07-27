@@ -1,20 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ITweet } from 'src/app/interfaces/tweet';
+import { Component, Input } from '@angular/core';
+import { Tweet } from 'src/app/models/tweet';
 
 @Component({
   selector: 'app-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss']
 })
-export class AccordionComponent implements OnInit {
-
-  @Input() public hashtagGroup: any;
-  public title: string = ''
-  public tweets: ITweet[] = [];
-
-  ngOnInit(): void {
-    this.title = this.hashtagGroup.key;
-    this.tweets = this.hashtagGroup.value;
-  }
-
+export class AccordionComponent {
+  @Input() public title: string = ''
+  // keyValue pipe does unexpected value comparison of tweet[] to number
+  // we use 'any' to protect against this typescript bug https://github.com/angular/angular/issues/35743
+  @Input() public tweets: Tweet[] | any = [];
 }

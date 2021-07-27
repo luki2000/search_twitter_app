@@ -23,9 +23,10 @@
         <h2 class="no-data-text">OOPS! No results returned, try search something else 🤕</h2>
       </ng-container>
       <ng-container *ngIf="hashtagGroups">
-        <ng-container *ngFor="let hashtagGroup of hashtagGroups | keyvalue: asIsOrder">
+        <ng-container *ngFor="let hashtagGroup of hashtagGroups | keyvalue : asIsOrder">
           <app-accordion 
-            [hashtagGroup]="hashtagGroup"></app-accordion>
+            [title]="hashtagGroup.key"
+            [tweets]="hashtagGroup.value"></app-accordion>
         </ng-container>
       </ng-container>
     </div>

@@ -1,5 +1,5 @@
-import { ITweet } from "./tweet";
+import { Tweet } from "../models/tweet";
 
 export interface IHashtagGroup {
-    [key: string]: ITweet[]
+    [key: string]: Tweet[]
  }
