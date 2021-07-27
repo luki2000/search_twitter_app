@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import {finalize, catchError} from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 import { IHashtagGroup } from '../interfaces/hashtagGroup';
 import { SpinnerService } from '../services/spinner.service';
 
@@ -10,14 +11,12 @@ import { SpinnerService } from '../services/spinner.service';
 })
 export class TwitterService {
 
-  baseUrl: string = 'http://localhost:5000/searchTweets'
-
   constructor(private http: HttpClient, private spinnerService: SpinnerService) { }
 
   public getTopTenHashtagTweets(query: string): Observable<IHashtagGroup[]> {
     // ideally spinner should be in an interceptor to be used only once for all http requests
     this.spinnerService.requestStarted();
-    return this.http.get<IHashtagGroup[]>(this.baseUrl + `?query=${query}`)
+    return this.http.get<IHashtagGroup[]>(`${environment.apiUrl}/searchTweets?query=${query}`)
       .pipe(
         finalize(() => this.spinnerService.requestEnded()),
         catchError((e) => {
