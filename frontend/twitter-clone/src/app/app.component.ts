@@ -14,23 +14,20 @@ export class AppComponent {
   asIsOrder = asIsOrder;
   hashtagGroups: IHashtagGroup[] | null = null;
   searchForm = this.formBuilder.group({
-    query: ['']
+    query: ['', Validators.required]
   });
 
   constructor(
-      private twitterService: TwitterService, 
-      public spinnerService: SpinnerService, 
+      private twitterService: TwitterService,
       private formBuilder: FormBuilder) {
 
   }
 
   onSubmit():void {
-    if(!this.searchForm.value.query) return
-      this.spinnerService.requestStarted()
+    if(!this.searchForm.valid) return;
       this.twitterService.getTopTenHashtagTweets(this.searchForm.value.query)
         .subscribe(hashtagGroups => {
           this.hashtagGroups = hashtagGroups;
-          this.spinnerService.requestEnded();
         })
   }
 }

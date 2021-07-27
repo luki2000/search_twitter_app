@@ -16,7 +16,6 @@ export class SpinnerComponent implements OnInit {
     this.init()
   }
 
-
   init() {
     this.spinnerService.getSpinnerObserver().subscribe(status => {
       this.showSpinner = status;

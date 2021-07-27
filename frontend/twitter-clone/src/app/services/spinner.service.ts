@@ -14,12 +14,12 @@ export class SpinnerService {
   }
 
   requestStarted() {
-      this.spinner$.next(true)
+    this.spinner$.next(true)
     
   }
 
   requestEnded() {
-      this.spinner$.next(false);
+    this.spinner$.next(false);
   
   }
 }
