@@ -5,29 +5,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SpinnerService {
-  private count = 0;
-  private spinner$ = new BehaviorSubject<string>('')
+  private spinner$ = new BehaviorSubject<boolean>(false)
 
   constructor() { }
 
-  getSpinnerObserver(): Observable<string> {
+  getSpinnerObserver(): Observable<boolean> {
     return this.spinner$.asObservable();
   }
 
   requestStarted() {
-    if(++this.count === 1) {
-      this.spinner$.next('start')
-    }
+      this.spinner$.next(true)
+    
   }
 
   requestEnded() {
-    if(this.count === 0 || --this.count === 0) {
-      this.spinner$.next('stop');
-    }
-  }
-
-  resetSpinner() {
-    this.count = 0;
-    this.spinner$.next('stop');
+      this.spinner$.next(false);
+  
   }
 }

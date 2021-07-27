@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { IHashtagGroup } from './interfaces/hashtagGroup';
 import { SpinnerService } from './services/spinner.service';
 import { TwitterService } from './services/twitter.service';
+import  { asIsOrder } from './util/mapKeyValue.util';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,10 @@ import { TwitterService } from './services/twitter.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'twitter-clone';
+  asIsOrder = asIsOrder;
   hashtagGroups: IHashtagGroup[] | null = null;
   searchForm = this.formBuilder.group({
-    query: ['', Validators.required]
+    query: ['']
   });
 
   constructor(
@@ -21,11 +22,6 @@ export class AppComponent {
       public spinnerService: SpinnerService, 
       private formBuilder: FormBuilder) {
 
-  }
-
-  // method to preserve order of keyValue in pipe
-  asIsOrder(a: any, b: any): number {
-    return 1;
   }
 
   onSubmit():void {
