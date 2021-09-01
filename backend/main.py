@@ -9,8 +9,8 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 # Twitter API key and API secret
-my_api_key = "NxLRYMoLcIp3tXVOuLTXCbe9z"
-my_api_secret = "aaXP6WhKrWvPlZVszwIPeOnY3Tt6Dr9WRizwEj40YFCPbVKtjK"
+my_api_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+my_api_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 # authenticate
 auth = tw.OAuthHandler(my_api_key, my_api_secret)
